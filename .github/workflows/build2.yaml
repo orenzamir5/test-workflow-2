@@ -1,0 +1,43 @@
+name: Build2
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v2.*
+  workflow_dispatch:
+jobs:
+  # The job auto bump version, create a new release and a git tag according
+  # to the bumped version. The bumped version value is needed for next steps
+  release_drafter:
+    name: release_drafter
+    if: ${{ github.ref_name == 'main' }}
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    outputs:
+      release_drafter_version: ${{ steps.release_drafter.outputs.tag_name }}
+    steps:
+      # Create Release drafter and bump version
+      - name: Create Release drafter and bump version
+        uses: release-drafter/release-drafter@v5
+        id: release_drafter
+        #env:
+        #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # echo next version
+      - run: echo "Upcoming version release is - ${{ steps.release_drafter.outputs.tag_name }}"
+
+  # Publish release drafter to Github releases page only if all above steps completed successfully
+  release_drafter_publish:
+    name: release_drafter_publish
+    if: ${{ github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      # Publish release in Github UI
+      - name: Publish release in Github UI
+        uses: release-drafter/release-drafter@v5
+        #env:
+        #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          publish: true
