@@ -5,10 +5,7 @@ on:
       - main
     tags:
       - v2.*
-  workflow_run:
-    workflows: ["Build1"]
-    types:
-      - completed
+  workflow_dispatch:
 jobs:
   # The job auto bump version, create a new release and a git tag according
   # to the bumped version. The bumped version value is needed for next steps
@@ -49,4 +46,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Client Payload
-        run: echo "Client Payload:${{ github.event.workflow_run.event.client_payload }}"
+        run: echo "Client Payload:${{ github.event.workflow_dispatch.event.client_payload }}"
