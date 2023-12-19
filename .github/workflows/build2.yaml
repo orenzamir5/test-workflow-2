@@ -47,9 +47,3 @@ jobs:
           publish: true
 
       - run: echo ${{ github.event.inputs.sha }}
-
-  # process_triggered_workflow:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Get Input
-  #       run: echo "String Input:${{ github.event.inputs.my_string_input }}"
