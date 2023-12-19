@@ -42,8 +42,10 @@ jobs:
         with:
           publish: true
 
-  process_triggered_workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get Input
-        run: echo "String Input:${{ github.event.inputs.my_string_input }}"
+      - run: echo ${{ github.event.client_payload.bla }}
+
+  # process_triggered_workflow:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Get Input
+  #       run: echo "String Input:${{ github.event.inputs.my_string_input }}"
