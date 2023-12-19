@@ -45,5 +45,5 @@ jobs:
   process_triggered_workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Client Payload
-        run: echo "Client Payload:${{ github.event.workflow_dispatch.event.client_payload }}"
+      - name: Get Input
+        run: echo "String Input:${{ github.event.inputs.my_string_input }}"
