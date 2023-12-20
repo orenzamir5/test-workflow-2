@@ -58,6 +58,6 @@ jobs:
         uses: irongut/EditRelease@v1.2.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          id: ${{ github.event.release.id }}
+          id: '2.311.1'
           body: "Released to GitHub Packages."
           #files: "code-coverage-results.md"
