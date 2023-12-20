@@ -52,10 +52,9 @@ jobs:
           header: |
             
             FE Builld Number: ${{ github.event.inputs.fe_build_number }}  
-            FE Changes: ${{ github.event.inputs.body }} 
-
-
+            FE Changes: "${{ github.event.inputs.body }}" 
+                                                                             
           publish: true
 
-      - run: echo ${{ github.event.inputs.body }}
-      - run: echo ${{ github.event.inputs.fe_build_number }}
+      # - run: echo ${{ github.event.inputs.body }}
+      # - run: echo ${{ github.event.inputs.fe_build_number }}
