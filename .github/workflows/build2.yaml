@@ -45,8 +45,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          header: |
-            ## Changess
+          footer: |
+            ## Changes
 
             bla bla
           publish: true
