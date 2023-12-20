@@ -52,3 +52,11 @@ jobs:
           publish: true
 
       - run: echo ${{ github.event.inputs.body }}
+
+      - name: Add Test Report to Release
+        uses: irongut/EditRelease@v1.2.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          id: ${{ github.event.release.id }}
+          body: "Released to GitHub Packages."
+          #files: "code-coverage-results.md"
