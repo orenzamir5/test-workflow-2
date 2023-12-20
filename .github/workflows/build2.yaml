@@ -48,7 +48,7 @@ jobs:
           template: |
             ## Changes
 
-            ${{ github.event.inputs.body }}
+            "${{ github.event.inputs.body }}"
           publish: true
 
       - run: echo ${{ github.event.inputs.body }}
