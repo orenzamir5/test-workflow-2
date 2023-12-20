@@ -7,9 +7,10 @@ on:
   #     - v2.*
   workflow_dispatch:
     inputs:
-      sha:
+      body:
         description: 'String Input for Workflow B'
         required: false
+        default: ''
 jobs:
   # The job auto bump version, create a new release and a git tag according
   # to the bumped version. The bumped version value is needed for next steps
@@ -44,6 +45,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          template: |
+            ## Changes
+
+            echo ${{ github.event.inputs.body }}
           publish: true
 
-      - run: echo ${{ github.event.inputs.sha }}
+      - run: echo ${{ github.event.inputs.body }}
