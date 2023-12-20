@@ -46,7 +46,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           header: |
-            ## Changes
 
             ${{ github.event.inputs.body }} 
 
