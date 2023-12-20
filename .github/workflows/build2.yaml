@@ -48,16 +48,8 @@ jobs:
           header: |
             ## Changes
 
-            bla bla
+            ${{ github.event.inputs.body }} 
+
           publish: true
 
       - run: echo ${{ github.event.inputs.body }}
-      - run: echo ${{ steps.release_drafter.outputs.tag_name }}
-
-      - name: Add Test Report to Release
-        uses: irongut/EditRelease@v1.2.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          id: '2.311.1'
-          body: "Released to GitHub Packages."
-          #files: "code-coverage-results.md"
