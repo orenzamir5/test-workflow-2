@@ -11,6 +11,10 @@ on:
         description: 'String Input for Workflow B'
         required: false
         default: ''
+      fe_build_number:
+        description: 'String Input for Workflow B'
+        required: false
+        default: ''
 jobs:
   # The job auto bump version, create a new release and a git tag according
   # to the bumped version. The bumped version value is needed for next steps
@@ -46,9 +50,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           header: |
+            
+            FE Builld Number: ${{ github.event.inputs.fe_build_number }}  
+            FE Changes: ${{ github.event.inputs.body }} 
 
-            ${{ github.event.inputs.body }} 
 
           publish: true
 
       - run: echo ${{ github.event.inputs.body }}
+      - run: echo ${{ github.event.inputs.fe_build_number }}
