@@ -49,7 +49,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          header: |
+          footer: |
             
             FE Builld Number: ${{ github.event.inputs.fe_build_number }}  
             FE Changes: "${{ github.event.inputs.body }}" 
