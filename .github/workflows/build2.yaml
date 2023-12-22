@@ -44,7 +44,8 @@ jobs:
     timeout-minutes: 60
     steps:
       # Publish release in Github UI
-      - name: Publish release in Github UI
+      - name: Publish release in Github UI - workflow_dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' }}
         uses: release-drafter/release-drafter@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,6 +55,15 @@ jobs:
             FE Builld Number: ${{ github.event.inputs.fe_build_number }}  
             FE Changes: "${{ github.event.inputs.body }}" 
                                                                              
+          publish: true
+      
+      # Publish release in Github UI
+      - name: Publish release in Github UI
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        uses: release-drafter/release-drafter@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:                                                                             
           publish: true
 
       # - run: echo ${{ github.event.inputs.body }}
