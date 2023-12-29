@@ -58,7 +58,7 @@ jobs:
             
             FE Version: ${{ github.event.inputs.fe_version }}  
             FE Tag URL: ${{ github.event.inputs.release_drafter_tag_url }}  
-            FE Changes: "${{ github.event.inputs.release_drafter_body }}" 
+            FE Changes: ${{ github.event.inputs.release_drafter_body }} 
                                                                              
           publish: true
       
