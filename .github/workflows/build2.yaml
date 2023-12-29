@@ -7,12 +7,16 @@ on:
       - v2.*
   workflow_dispatch:
     inputs:
-      body:
-        description: 'String Input for Workflow B'
+      release_drafter_tag_url:
+        description: 'Release drafter FE tag URL'
         required: false
         default: ''
-      fe_build_number:
-        description: 'String Input for Workflow B'
+      release_drafter_body:
+        description: 'Release drafter FE changes'
+        required: false
+        default: ''
+      fe_version:
+        description: 'FE version tag'
         required: false
         default: ''
 jobs:
@@ -52,8 +56,9 @@ jobs:
         with:
           footer: |
             
-            FE Builld Number: ${{ github.event.inputs.fe_build_number }}  
-            FE Changes: "${{ github.event.inputs.body }}" 
+            FE Version: ${{ github.event.inputs.fe_version }}  
+            FE Tag URL: ${{ github.event.inputs.release_drafter_tag_url }}  
+            FE Changes: "${{ github.event.inputs.release_drafter_body }}" 
                                                                              
           publish: true
       
